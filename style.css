@@ -25,4 +25,18 @@ body {
         backface-visibility: hidden;
         --i: 0; --j: 1;
         transform: rotate3d(var(--i), var(--j), 0, var(--a)) 
-     
+            translateZ(.5*$cube-edge);
+        // interpolate because Sass apparently has issues with this
+        background: #{'linear-gradient(var(--ga), var(--gs))'};
+        
+        &:nth-child(n + 5) { --i: 1; --j: 0 }
+    
+        @for $f from 0 to 6 {
+            &:nth-child(#{$f + 1}) {
+                --a: if($f < 4, $f, pow(-1, $f))*90deg;
+                --ga: random(360)*1deg;
+                --gs: nth($pastels, $f + 1);
+            }
+        }
+    }
+}
