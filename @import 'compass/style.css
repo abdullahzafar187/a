@@ -1,0 +1,28 @@
+@import 'compass/css3';
+
+$pastels: (#feffaa, #b2ff90) (#fbc2eb, #a6c1ee) (#84fab0, #8fd3f4) 
+    (#a1c4fd, #c2e9fb) (#f6d365, #fda085) (#ffecd2, #fcb69f);
+$cube-edge: 4em;
+
+body {
+    margin: 0;
+  height: 100vh;
+  perspective: 25em;
+}
+
+[class*='cube'] { position: absolute }
+
+.cube {
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+    font-size: 8vmin;
+    transform: rotate3d(var(--i, -7), var(--j, 8), 0, var(--a, 47deg)) 
+        var(--p, unquote(' '));
+    
+    &__face {
+        margin: -.5*$cube-edge;
+        width: $cube-edge; height: $cube-edge;
+        backface-visibility: hidden;
+        --i: 0; --j: 1;
+        transform: rotate3d(var(--i), var(--j), 0, var(--a)) 
+     
